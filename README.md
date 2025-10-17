@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# RBTree Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+레드-블랙 트리의 삽입과 삭제 과정을 자연스러운 애니메이션과 함께 살펴볼 수 있는 시각화 도구입니다.
+## 미리 보기
+개발 서버를 실행하면 `http://localhost:5173`에서 시각화 페이지를 확인할 수 있습니다.
 
-Currently, two official plugins are available:
+## 설치 및 실행
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. 저장소 다운로드
+```bash
+git clone https://github.com/JUNGBOGEON/rbtree-visualization.git
+cd rbtree-visual-vite
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. 필수 요건
+- Node.js **20.19.0 이상** (또는 22.12.0 이상)
+- npm 10.x 이상
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Node.js 버전이 낮을 경우 Vite 빌드 시 경고가 표시되므로 LTS 최신 버전으로 업그레이드하는 것을 권장합니다.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. 의존성 설치
+```bash
+npm install
 ```
+
+### 4. 개발 서버 실행
+```bash
+npm run dev
+```
+
+### 5. 프로덕션 빌드
+```bash
+npm run build
+```
+
+## 사용 방법
+1. **삽입**: 컨트롤 패널에서 값을 입력하고 `삽입` 버튼을 눌러 노드를 추가합니다. 이미 존재하는 값이면 히스토리에 삽입 취소 단계가 기록됩니다.
+2. **랜덤 삽입**: `랜덤 삽입` 버튼은 1~99 범위의 중복되지 않은 숫자를 추가합니다.
+3. **노드 선택**: 트리에서 노드를 클릭하면 컨트롤 패널에 선택된 값이 표시되고 파란색 링으로 강조됩니다.
+4. **삭제**: 선택된 값이 있을 때 `선택 삭제` 버튼을 누르면 삭제 연산이 수행되고 히스토리에 과정이 기록됩니다.
+5. **히스토리 탐색**: 우측 히스토리 패널에서 원하는 연산과 단계를 클릭하면 해당 시점의 트리를 재생성해 설명과 함께 볼 수 있습니다.
+6. **초기화**: `초기화` 버튼으로 트리와 히스토리를 모두 초기 상태로 되돌릴 수 있습니다.
+
+## 기술 스택
+- React 19
+- TypeScript
+- Vite 7
+- Framer Motion
